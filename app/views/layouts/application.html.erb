@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bloggie</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <%= link_to 'Bloggie', root_path, class: 'navbar-brand' %>
+        </div>
+
+        <div class="pull-right">
+          <% if user_signed_in? %>
+            <%= image_tag current_user.avatar.url, class: 'avatar'  %>
+            <%= current_user.username %>
+            <%= link_to "Edit Profile", edit_user_registration_path, class: "btn btn-primary" %>
+            <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-danger' %>
+          <% end %>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <%= yield %>
+    </div>
+  </body>
+</html>

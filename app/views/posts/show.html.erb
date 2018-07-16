@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @post.title %></h1>
+<h3>by <strong><%= @post.user.email %></strong></h3>
+
+<div class="well">
+  <p>
+    <%= @post.blog_entry %>
+  </p>
+</div>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>
+
+<% @post.comments.each do |comment| %>
+  <div>
+    <h5><%= comment.author %> says...</h5>
+    <p>
+      <%= comment.comment_entry %>
+    </p>
+  </div>
+<% end %>
+
+<div id="comments">
+  <%= render 'comments/form', comment: @comment %>
+</div>
